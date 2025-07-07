@@ -58,7 +58,6 @@ venv.bak/
 
 # Python env/tooling
 .uv/
-uv.lock
 
 # Env
 backend/.env
