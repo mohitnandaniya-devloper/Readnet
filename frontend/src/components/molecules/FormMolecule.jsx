@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React from "react"
 import axiosClient from "@/utils/axiosClient"
 import useContactStore from "@/store/contactStore"
 import ButtonAtom from "@/components/atoms/ButtonAtom"
@@ -6,7 +6,7 @@ import TextareaAtom from "@/components/atoms/TextareaAtom"
 import InputAtom from "@/components/atoms/InputAtom"
 import LableAtom from "@/components/atoms/LableAtom"
 
-import { toast } from "sonner"
+import { useState } from "react"
 
 export default function FormMolecule() {
   const { formData, setFormData, resetForm } = useContactStore();
@@ -19,11 +19,11 @@ export default function FormMolecule() {
     setLoading(true);
     try {
       const response = await axiosClient.post("/contacts/receive", formData);
-      toast("Message sent successfully!")
+      alert("Message sent successfully!");
       resetForm();
     } catch (err) {
       console.error("Error sending message:", err);
-      toast("Something went wrong.")
+      alert("Something went wrong.");
     } finally {
       setLoading(false);
     }
