@@ -1,0 +1,82 @@
+# ─────────────
+# 🔧 Common
+.DS_Store
+Thumbs.db
+*.log
+logs/
+*.pid
+*.local
+
+# ─────────────
+# ⚛️ Frontend (React + Vite + Tailwind + ShadCN + Bun)
+node_modules/
+dist/
+dist-ssr/
+.vite/
+.bun/
+bun.lockb
+
+# Env files
+.env
+.env.*
+!.env.sample
+
+# Editor settings
+.vscode/
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Cache and temp
+.eslintcache
+*.tsbuildinfo
+
+# ─────────────
+# 🐍 Backend (FastAPI + Python + uv)
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual envs (optional if uv only)
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Python env/tooling
+.uv/
+uv.lock
+
+# Env
+backend/.env
+backend/.env.*
+!backend/.env.sample
+
+# Type checkers & testing
+.mypy_cache/
+.pyright/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Alembic DB migrations
+alembic/versions/
+
+# Jupyter/IPython
+.ipynb_checkpoints/
+
+# Docker (optional)
+docker-compose.override.yml
