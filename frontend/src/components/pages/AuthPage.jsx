@@ -1,5 +1,4 @@
 import React from "react"
-
 import { SignIn, SignUp, SignedIn, SignedOut } from "@clerk/clerk-react"
 
 export default function AuthPage() {
