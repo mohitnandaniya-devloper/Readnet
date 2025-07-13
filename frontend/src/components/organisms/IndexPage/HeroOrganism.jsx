@@ -19,7 +19,7 @@ export default function HeroOrganism() {
 
   return (
   <section class="body-font">
-    <div class="container mx-auto flex px-5 py-5 items-center justify-center flex-col">
+    <div class="container mx-auto flex px-5 py-20 items-center justify-center flex-col">
       <div className="relative h-[300px] w-full overflow-hidden">
         <VideoTextAtom children="Readnet" src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" />
       </div>

@@ -4,7 +4,8 @@ import FormMolecule from "@/components/molecules/FormMolecule"
 export default function ContactFormOrganism() {
   return (
     <section className="body-font relative">
-      <div className="container px-5 py-5 mx-auto">
+
+      <div className="container px-5 py-20 mx-auto">
         <div className="flex flex-col text-center w-full mb-10">
           <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4">
             Reach Out to Us
