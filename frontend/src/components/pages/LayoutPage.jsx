@@ -4,7 +4,7 @@ import FooterOrganism from "@/components/organisms/FooterOrganism"
 
 import { Outlet } from "react-router-dom"
 
-export default function LayoutTemplate() {
+export default function LayoutPage() {
   return (
   <div>
       <HeaderOrganism/>
