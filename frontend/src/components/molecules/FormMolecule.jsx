@@ -18,7 +18,7 @@ export default function FormMolecule() {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await axiosClient.post("/contacts/receive", formData);
+      const response = await axiosClient.post("/contacts/", formData);
       alert("Message sent successfully!");
       resetForm();
     } catch (err) {
