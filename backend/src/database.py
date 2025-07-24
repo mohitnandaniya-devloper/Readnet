@@ -12,7 +12,9 @@ DB_PORT = os.getenv("DB_PORT")
 DB_NAME = os.getenv("DB_NAME")
 
 DATABASE_URL = (
-    f"postgresql+psycopg2://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}?sslmode=require"
+    # f"postgresql+psycopg2://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}?sslmode=require"
+    f"postgresql://{DB_USER}.ptqbtotvekiygofwpgno:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/postgres"
+    
 )
 
 engine = create_engine(DATABASE_URL, echo=True)
