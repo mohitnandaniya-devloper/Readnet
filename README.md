@@ -25,7 +25,7 @@ uvicorn server:app --reload
 ```
 git add .
 git branch -m dev
-git commit -m "u1 initial commit [today's date]"
+git commit -m "up1 initial commit [today's date]"
 git push origin dev
 ```
 

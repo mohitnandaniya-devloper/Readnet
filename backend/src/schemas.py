@@ -1,5 +1,5 @@
-from pydantic import BaseModel, EmailStr
-from typing import List, Optional, Generic, TypeVar, Literal
+from pydantic import BaseModel, EmailStr, AnyUrl
+from typing import List, Optional, Generic, TypeVar
 from decimal import Decimal
 from datetime import datetime
 
@@ -43,6 +43,43 @@ class ContactInDB(BaseModel):
         },
     }
 
+
+class UserSchema(BaseModel):
+    id: str
+    email: EmailStr
+
+class UserInDB(BaseModel):
+    id: str
+    email: EmailStr
+    is_subcribe: bool = False
+    is_admin: bool = False
+
+    model_config = {
+        "from_attributes": True,
+        "json_encoders": {
+            datetime: lambda dt: dt.isoformat(),
+        },
+    }
+
+
+class CollectionSchema(BaseModel):
+    title: str
+    isbn: str
+
+class ContactInDB(BaseModel):
+    id: int
+    title: str
+    isbn: str
+    pdf_url: AnyUrl
+    created_at: datetime
+    updated_at: datetime
+
+    model_config = {
+        "from_attributes": True,
+        "json_encoders": {
+            datetime: lambda dt: dt.isoformat(),
+        },
+    }
 
 class PlanSchema(BaseModel):
     """Base schema for creating/updating a plan."""
