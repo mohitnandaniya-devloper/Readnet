@@ -4,12 +4,14 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from src.routers.contact_router import router as contact_router
 from src.routers.collection_router import router as collection_router
-from src.routers.transaction_router import router as transaction_router
-from src.routers.user_router import router as user_router
-
+# from src.routers.payment_router import router as payment_router
+# from src.routers.user_router import router as user_router
+from src.routers.plan_router import router as plan_router
 load_dotenv()
 
 app = FastAPI()
+
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[os.getenv("FRONTEND_ORIGIN", "http://localhost:5173")],
@@ -19,11 +21,14 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
-app.include_router(contact_router, prefix="/contacts", tags=["ContactAPI"])
-app.include_router(collection_router, prefix="/collections", tags=["CollectionAPI"])
-app.include_router(transaction_router, prefix="/transactions", tags=["TransactionAPI"])
-app.include_router(user_router, prefix="/users", tags=["UserAPI"])
+
+app.include_router(contact_router, prefix="/contacts", tags=["Contact API"])
+app.include_router(plan_router, prefix="/plans", tags=["Plan API"])
+app.include_router(collection_router, prefix="/collections", tags=["Collection API"])
+# app.include_router(payment_router, prefix="/payments", tags=["Payment API"])
+# app.include_router(user_router, prefix="/users", tags=["User API"])
+
 
 @app.get("/", tags=["Default"])
-async def read_root():
+def read_root():
     return {"message": "Welcome to the ReadnetAPI!"}
