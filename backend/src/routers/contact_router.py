@@ -7,7 +7,7 @@ from sqlalchemy.orm import Session
 router = APIRouter()
 
 @router.get("/", response_model=ResponseList[ContactInDB])
-async def list_contacts(db: Session = Depends(get_db)):
+def list_contacts(db: Session = Depends(get_db)):
     contacts = db.query(ContactModel).all()
     return ResponseList(
         success=True,
@@ -15,8 +15,9 @@ async def list_contacts(db: Session = Depends(get_db)):
         data=contacts
     )
 
+
 @router.post("/", response_model=ResponseData[ContactInDB], status_code=status.HTTP_201_CREATED)
-async def create_contact(contact: ContactSchema, db: Session = Depends(get_db)):
+def create_contact(contact: ContactSchema, db: Session = Depends(get_db)):
     existing = db.query(ContactModel).filter_by(email=contact.email).first()
     if existing:
         raise HTTPException(
@@ -37,7 +38,7 @@ async def create_contact(contact: ContactSchema, db: Session = Depends(get_db)):
 
 
 @router.get("/{contact_id}", response_model=ResponseData[ContactInDB])
-async def get_contact(contact_id: int, db: Session = Depends(get_db)):
+def get_contact(contact_id: int, db: Session = Depends(get_db)):
     contact = db.query(ContactModel).filter_by(id=contact_id).first()
     if not contact:
         raise HTTPException(status_code=404, detail="Contact not found")
@@ -50,7 +51,7 @@ async def get_contact(contact_id: int, db: Session = Depends(get_db)):
 
 
 @router.put("/{contact_id}", response_model=ResponseData[ContactInDB])
-async def update_contact(contact_id: int, updated_data: ContactSchema, db: Session = Depends(get_db)):
+def update_contact(contact_id: int, updated_data: ContactSchema, db: Session = Depends(get_db)):
     contact = db.query(ContactModel).filter_by(id=contact_id).first()
     if not contact:
         raise HTTPException(status_code=404, detail="Contact not found")
@@ -69,7 +70,7 @@ async def update_contact(contact_id: int, updated_data: ContactSchema, db: Sessi
 
 
 @router.delete("/{contact_id}", response_model=ResponseData[None])
-async def delete_contact(contact_id: int, db: Session = Depends(get_db)):
+def delete_contact(contact_id: int, db: Session = Depends(get_db)):
     contact = db.query(ContactModel).filter_by(id=contact_id).first()
     if not contact:
         raise HTTPException(status_code=404, detail="Contact not found")
