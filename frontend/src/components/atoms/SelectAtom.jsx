@@ -7,16 +7,18 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 
-export default function SelectAtom() {
+export default function SelectAtom({ defaultValue = "", options = [] }) {
   return (
-    <Select defaultValue="en">
+    <Select defaultValue={defaultValue}>
       <SelectTrigger>
         <SelectValue />
       </SelectTrigger>
       <SelectContent>
-        <SelectItem value="en">English</SelectItem>
-        <SelectItem value="hi">Hindi</SelectItem>
-        <SelectItem value="fr">French</SelectItem>
+        {options.map(({ value, label }) => (
+          <SelectItem key={value} value={value}>
+            {label}
+          </SelectItem>
+        ))}
       </SelectContent>
     </Select>
   )

@@ -1,0 +1,314 @@
+// HeaderOrganism
+
+import React from "react";
+import ButtonAtom from "@/components/atoms/ButtonAtom";
+import SelectAtom from "@/components/atoms/SelectAtom";
+import data from "@/data/info.json";
+import { Link } from "react-router-dom";
+import { SignedIn, SignedOut, UserButton } from "@clerk/clerk-react";
+
+export default function HeaderOrganism() {
+  const languageOptions = Object.entries(data.info.language).map(([value, label]) => ({
+    value,
+    label
+  }));
+
+  return (
+    <header className="bg-black text-white body-font shadow-md">
+      <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+        <a className="flex title-font font-bold items-center mb-4 md:mb-0">
+          <span className="ml-3 text-4xl text-red-600 tracking-wider">
+            {data.info.title}
+          </span>
+        </a>
+        <div className="md:ml-auto flex flex-wrap items-center text-base justify-center space-x-4">
+          <SelectAtom
+            defaultValue="en"
+            options={languageOptions}
+            className="bg-gray-800 text-white border border-gray-700 rounded"
+          />
+          <SignedOut>
+            <Link to="/sign-in">
+              <ButtonAtom
+                children="Sign In"
+                className="bg-red-600 text-white text-sm font-medium px-4 py-2 mx-2 rounded hover:bg-red-700 transition-colors duration-200"
+              />
+            </Link>
+          </SignedOut>
+          <SignedIn>
+            <UserButton afterSignOutUrl="/" appearance={{ elements: { avatarBox: 'ring-2 ring-red-600' } }} />
+          </SignedIn>
+        </div>
+      </div>
+    </header>
+  );
+}
+
+
+
+// footerorigin 
+
+
+import React from "react"
+import data from "@/data/data.json"
+import {
+  FacebookIcon,
+  TwitterIcon,
+  InstagramIcon,
+  LinkedinIcon
+} from "lucide-react"
+
+export default function FooterOrganism() {
+  const footerData = data.indexPage.footerSection
+  const iconMap = {
+    facebook: <FacebookIcon className="w-5 h-5" />,
+    twitter: <TwitterIcon className="w-5 h-5" />,
+    instagram: <InstagramIcon className="w-5 h-5" />,
+    linkedin: <LinkedinIcon className="w-5 h-5" />
+  }
+
+  return (
+    <footer className="bg-muted/50 body-font">
+      <div>
+        <div className="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
+          <p className="text-sm text-center sm:text-left">
+            {footerData.copyright} —
+            <a
+              href={footerData.repoLink}
+              rel="noopener noreferrer"
+              className="ml-1"
+              target="_blank"
+            >
+              {footerData.repoText}
+            </a>
+          </p>
+          <span className="inline-flex sm:ml-auto sm:mt-0 mt-2 justify-center sm:justify-start">
+            {footerData.socialLinks.map((social, index) => (
+              <a
+                key={index}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ml-3"
+              >
+                {iconMap[social.icon]}
+              </a>
+            ))}
+          </span>
+        </div>
+      </div>
+    </footer>
+  )
+}
+
+
+// HeroOrganism
+
+import React from "react";
+import VideoTextAtom from "@/components/atoms/VideoTextAtom";
+import ButtonAtom from "@/components/atoms/ButtonAtom";
+import data from "@/data/data.json";
+import { useUser } from "@clerk/clerk-react";
+import { useNavigate } from "react-router-dom";
+
+export default function HeroOrganism() {
+  const heroData = data.indexPage.heroSection;
+  const { isSignedIn } = useUser();
+  const navigate = useNavigate();
+
+  const handleGetStarted = () => {
+    if (isSignedIn) {
+      navigate("/plans");
+    } else {
+      navigate("/sign-in");
+    }
+  };
+
+  return (
+    <section className="bg-black text-white body-font">
+      <div className="container mx-auto flex px-5 py-20 items-center justify-center flex-col">
+        <div className="relative h-[300px] w-full overflow-hidden rounded-lg shadow-lg">
+          <VideoTextAtom children={heroData.title} src={heroData.video} />
+        </div>
+        <div className="text-center lg:w-2/3 w-full mt-8">
+          <h1 className="sm:text-4xl text-3xl mb-4 font-bold text-red-600 tracking-wide">
+            {heroData.subtitle}
+          </h1>
+          <p className="mb-8 leading-relaxed text-gray-300">
+            {heroData.context}
+          </p>
+          <div className="flex justify-center">
+            <ButtonAtom
+              onClick={handleGetStarted}
+              children="Get Started"
+              className="bg-red-600 text-white text-2xl font-medium py-4 px-8 rounded hover:bg-red-700 transition-colors duration-300 shadow-md"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+
+// According Origin
+
+import React from "react";
+import data from "@/data/data.json";
+
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+
+export default function AccordionOrganism() {
+  const accordionData = data.indexPage.accordionSection;
+
+  return (
+    <Accordion
+      type="single"
+      collapsible
+      className="w-full"
+      defaultValue="item-0"
+    >
+      <section className="bg-black text-white body-font">
+        <div className="container px-10 py-10 mx-auto">
+          {Object.entries(accordionData).map(([title, description], index) => (
+            <AccordionItem
+              key={index}
+              value={`item-${index}`}
+              className="border-b border-gray-800"
+            >
+              <AccordionTrigger className="text-xl font-bold text-red-600 hover:text-red-700 transition-colors">
+                {title}
+              </AccordionTrigger>
+              <AccordionContent className="flex flex-col gap-4 text-gray-300 leading-relaxed">
+                <p>{description}</p>
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </div>
+      </section>
+    </Accordion>
+  );
+}
+
+// Contact form Organism
+
+
+import React from "react";
+import FormMolecule from "@/components/molecules/FormMolecule";
+import data from "@/data/data.json";
+
+export default function ContactFormOrganism() {
+  return (
+    <section className="bg-black text-white body-font relative">
+      <div className="container px-5 py-20 mx-auto">
+        <div className="flex flex-col text-center w-full mb-10">
+          <h1 className="sm:text-3xl text-2xl font-bold title-font mb-4 text-red-600 tracking-wide">
+            {data.indexPage.contactFormSection.title}
+          </h1>
+          <p className="lg:w-2/3 mx-auto leading-relaxed text-gray-300">
+            {data.indexPage.contactFormSection.subtitle}
+          </p>
+        </div>
+        <div className="bg-gray-900 p-8 rounded-lg shadow-lg border border-red-800">
+          <FormMolecule />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// FormMolecule
+
+
+
+import React from "react"
+import axiosClient from "@/utils/axiosClient"
+import useContactStore from "@/store/contactStore"
+import ButtonAtom from "@/components/atoms/ButtonAtom"
+import TextareaAtom from "@/components/atoms/TextareaAtom"
+import InputAtom from "@/components/atoms/InputAtom"
+import LableAtom from "@/components/atoms/LableAtom"
+
+import { useState } from "react"
+
+export default function FormMolecule() {
+  const { formData, setFormData, resetForm } = useContactStore();
+  const [loading, setLoading] = useState(false);
+  const handleChange = (e) => {
+    setFormData(e.target.name, e.target.value);
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const response = await axiosClient.post("/contacts/", formData);
+      alert("Message sent successfully!");
+      resetForm();
+    } catch (err) {
+      console.error("Error sending message:", err);
+      alert("Something went wrong.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className="lg:w-1/2 md:w-2/3 mx-auto">
+      <div className="flex flex-wrap -m-2">
+        <div className="p-2 w-1/2">
+          <LableAtom htmlFor="name" className="leading-7 text-sm" children="Name"/>
+          <InputAtom
+            id="name"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div className="p-2 w-1/2">
+        <LableAtom htmlFor="name" className="leading-7 text-sm" children="Email"/>
+          <InputAtom
+            id="email"
+            name="email"
+            type="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div className="p-2 w-full">
+          <LableAtom htmlFor="name" className="leading-7 text-sm" children="Message"/>
+          <TextareaAtom
+            id="message"
+            name="message"
+            rows={6}
+            maxLength={200}
+            className="h-20 resize-none"
+            value={formData.message}
+            onChange={handleChange}
+            required
+          />
+          <div className="text-right text-xs mt-1">
+            {formData.message.length}/200
+          </div>
+        </div>
+
+        <div className="p-2 w-full">
+          <ButtonAtom
+            type="submit"
+            className="flex mx-auto border-0 py-2 px-8 rounded"
+          >
+            {loading ? "Sending..." : "Submit"}
+          </ButtonAtom>
+        </div>
+      </div>
+    </form>
+  )
+}
