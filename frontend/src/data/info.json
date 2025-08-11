@@ -1,0 +1,10 @@
+{    
+    "info": {
+        "title": "Readnet",
+        "description": "Readnet is a platform for sharing and discovering articles.",
+        "language": {
+            "en": "English",
+            "hi": "Hindi"
+        }
+    }
+}

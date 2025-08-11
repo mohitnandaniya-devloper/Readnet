@@ -1,5 +1,82 @@
 {
-  
+    "indexPage": {
+
+        "heroSection": {
+            "title": "Readnet",
+            "subtitle": "Discover Limitless Reading. Anytime, Anywhere.",
+            "context": "Readnet transforms how you explore books and knowledge. With secure online access, personalized libraries, and a clean reading experience — dive into the world of books without downloads or distractions. Whether you're a student, casual reader, or lifelong learner, Readnet is your digital reading companion.",
+            "video": "https://www.shutterstock.com/shutterstock/videos/1016026384/preview/stock-footage-female-college-student-concentrating-on-reading-e-book-from-tablet-computer-at-the-table.webm"
+        },
+
+        "contactFormSection": {
+            "title": "Get in Touch",
+            "subtitle": "Have a question or idea? Drop a message and I'll get back to you soon!"
+        },
+        
+        "accordionSection": {
+            "Secure Online Access": "Read books online without downloads, ensuring your data is safe and accessible.",
+            "Personalized Libraries": "Create and manage your own book collections tailored to your reading preferences.",
+            "Clean Reading Experience": "Enjoy a distraction-free reading environment with a focus on content."
+        },
+        "footerSection": {
+            "copyright": "© 2025 Readnet",
+            "repoText": "@mohitnandaniya & @hareshmakavana",
+            "repoLink": "https://github.com/mohitnandaniya-devloper/Readnet",
+            "socialLinks": [
+                { "icon": "facebook", "url": "#" },
+                { "icon": "twitter", "url": "#" },
+                { "icon": "instagram", "url": "#" },
+                { "icon": "linkedin", "url": "#" }
+            ]
+        }
+    },
+
+    "pricingSection": {
+
+      "title": "Subscription Plans",
+      "subtitle": "Choose a plan that works for you. Upgrade anytime.",
+
+      "plans": [
+        {
+          "id": "silver",
+          "name": "1 Month (Silver Plan)",
+          "price": 100,
+          "tag": null,
+          "features": [
+          "Basic access",
+          "Community support",
+          "Limited features"
+          ],
+          "accent": "border-red-900 hover:border-red-700"
+        },
+        {
+          "id": "gold",
+          "name": "3 Month (Gold Plan)",
+          "price": 250,
+          "tag": "POPULAR",
+          "features": [
+          "All Silver features",
+          "Priority support",
+          "Advanced tools",
+          "Analytics dashboard"
+          ],
+          "accent": "border-red-500 hover:border-red-400"
+        },
+        {
+          "id": "diamond",
+          "name": "6 Month (Diamond Plan)",
+          "price": 500,
+          "tag": null,
+          "features": [
+          "All Gold features",
+          "Team collaboration",
+          "Custom integrations",
+          "Dedicated account manager",
+          "Extended analytics"
+          ],
+          "accent": "border-red-900 hover:border-red-700"
+        }
+       ]
+    }
+
 }
-
-
